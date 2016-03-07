@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{236ACA91-B15D-4ACF-A843-B60D44844463}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87A212F5-9C0B-4FE0-806B-4DBDEB3C7200}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		StartDnx.cmd = StartDnx.cmd
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AureliaAspNetApp", "src\AureliaAspNetApp\AureliaAspNetApp.xproj", "{4AAFD9A8-008C-4ADF-8089-90C6ED4B96E3}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdSvrConstants", "src\IdSvrConstants\IdSvrConstants.xproj", "{A0242838-054D-4171-8F60-6C8F47E10ED5}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AureliaWebsite", "src\AureliaWebsite\", "{CD956DE4-5096-4E27-88D7-5B99D226CCDD}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_52378"
+		Debug.AspNetCompiler.PhysicalPath = "src\AureliaWebsite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52378\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_52378"
+		Release.AspNetCompiler.PhysicalPath = "src\AureliaWebsite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52378\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "52378"
+		SlnRelativePath = "src\AureliaWebsite\"
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdSvrHost", "src\IdSvrHost\IdSvrHost.xproj", "{154CCEDC-CFD5-4B7A-9000-FC454EA86362}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "WebApi", "src\WebApi\WebApi.xproj", "{D9CC91FA-28F6-45C4-9378-3D22B0408B33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AAFD9A8-008C-4ADF-8089-90C6ED4B96E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AAFD9A8-008C-4ADF-8089-90C6ED4B96E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AAFD9A8-008C-4ADF-8089-90C6ED4B96E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AAFD9A8-008C-4ADF-8089-90C6ED4B96E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0242838-054D-4171-8F60-6C8F47E10ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0242838-054D-4171-8F60-6C8F47E10ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0242838-054D-4171-8F60-6C8F47E10ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0242838-054D-4171-8F60-6C8F47E10ED5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD956DE4-5096-4E27-88D7-5B99D226CCDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD956DE4-5096-4E27-88D7-5B99D226CCDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD956DE4-5096-4E27-88D7-5B99D226CCDD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD956DE4-5096-4E27-88D7-5B99D226CCDD}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{154CCEDC-CFD5-4B7A-9000-FC454EA86362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{154CCEDC-CFD5-4B7A-9000-FC454EA86362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{154CCEDC-CFD5-4B7A-9000-FC454EA86362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{154CCEDC-CFD5-4B7A-9000-FC454EA86362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9CC91FA-28F6-45C4-9378-3D22B0408B33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9CC91FA-28F6-45C4-9378-3D22B0408B33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9CC91FA-28F6-45C4-9378-3D22B0408B33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9CC91FA-28F6-45C4-9378-3D22B0408B33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4AAFD9A8-008C-4ADF-8089-90C6ED4B96E3} = {236ACA91-B15D-4ACF-A843-B60D44844463}
+		{A0242838-054D-4171-8F60-6C8F47E10ED5} = {236ACA91-B15D-4ACF-A843-B60D44844463}
+		{CD956DE4-5096-4E27-88D7-5B99D226CCDD} = {236ACA91-B15D-4ACF-A843-B60D44844463}
+		{154CCEDC-CFD5-4B7A-9000-FC454EA86362} = {236ACA91-B15D-4ACF-A843-B60D44844463}
+		{D9CC91FA-28F6-45C4-9378-3D22B0408B33} = {236ACA91-B15D-4ACF-A843-B60D44844463}
+	EndGlobalSection
+EndGlobal
