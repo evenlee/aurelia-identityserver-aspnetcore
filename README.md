@@ -9,14 +9,14 @@ This sample shows aurelia in combination with a web api and identityserver 4. Th
     * dnu restore
   
   * cd src/AureliaWebsite
-  * npm install
-  * jspm install -y
+    * npm install
+    * jspm install -y
   
   * cd src/IdSvrHost
-  * dnu restore
+    * dnu restore
   
   * cd src/IdSvrConstants
-  * dnu restore
+    * dnu restore
   
   cd src/WebApi
   dnu restore
