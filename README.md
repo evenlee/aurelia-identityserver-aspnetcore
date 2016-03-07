@@ -2,7 +2,7 @@
 ## Basic Sample
 ### introduction
 This sample shows aurelia in combination with a web api and identityserver 4. The aurelia plugin aurelia-auth is used to integrate the identityserver oauth and openId connect exchange.
-### how to install
+### how to install?
   * cd src/AureliaAspNetApp
     * npm install
     * jspm install -y
@@ -20,7 +20,8 @@ This sample shows aurelia in combination with a web api and identityserver 4. Th
   
   cd src/WebApi
   dnu restore
-
+### how to run?
+The root of the solution contains a .cmd file which will start all projects. We use dnx-watch, so file changes will result in an immediate recompilation of the sources.
 ### components overview
 #### IdSvrHost
 An asp.net core project containing Thinktecture's IdentityServer version 4. We use simple in memory Clients (for AureliaAspNetApp and AureliaWebsite) , Scopes and Users. 
