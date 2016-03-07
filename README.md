@@ -18,8 +18,8 @@ This sample shows aurelia in combination with a web api and identityserver 4. Th
   * cd src/IdSvrConstants
     * dnu restore
   
-  cd src/WebApi
-  dnu restore
+  * cd src/WebApi
+    * dnu restore
 ### how to run?
 The root of the solution contains a .cmd file which will start all projects. We use dnx-watch, so file changes will result in an immediate recompilation of the sources.
 ### components overview
