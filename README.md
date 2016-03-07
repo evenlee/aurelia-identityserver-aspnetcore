@@ -3,20 +3,20 @@
 ### introduction
 This sample shows aurelia in combination with a web api and identityserver 4. The aurelia plugin aurelia-auth is used to integrate the identityserver oauth and openId connect exchange.
 ### how to install
-  cd src/AureliaAspNetApp
-  npm install
-  jspm install -y
-  dnu restore
+  * cd src/AureliaAspNetApp
+  * npm install
+  * jspm install -y
+  * dnu restore
   
-  cd src/AureliaWebsite
-  npm install
-  jspm install -y
+  * cd src/AureliaWebsite
+  * npm install
+  * jspm install -y
   
-  cd src/IdSvrHost
-  dnu restore
+  * cd src/IdSvrHost
+  * dnu restore
   
-  cd src/IdSvrConstants
-  dnu restore
+  * cd src/IdSvrConstants
+  * dnu restore
   
   cd src/WebApi
   dnu restore
