@@ -97,13 +97,7 @@ namespace IdSvrHost
 
 
             app.UseStaticFiles();
-            app.UseFacebookAuthentication(o =>
-            {
-                o.SignInScheme = "cookiesxxx";
-                o.AppId = "1719401758283224";
-                o.AppSecret = "2696b4c8bf3c57e8799805dc171f425f";
-
-            });
+           
             app.UseMvcWithDefaultRoute();
         }
 
