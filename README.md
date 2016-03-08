@@ -22,7 +22,18 @@ This sample shows aurelia in combination with a web api and identityserver 4. Th
     * dnu restore
     
 ### how to run?
-The root of the solution contains a .cmd file which will start all projects. We use dnx-watch, so file changes will result in an immediate recompilation of the sources.
+The root of the solution contains a .cmd file which will start all projects. 
+We use dnx-watch, so file changes will result in an immediate recompilation of the sources.
+### which editor/IDE should i use?
+You are completely free to choose whatever you like. I like the simplicity and speed of visual studio code.
+Currently it's not possible to debug c# code with visual studio code. So, if you need debugging, use visual studio.
+
+1. Visual studio
+  * You can either run StartDnx.cmd or simply press F5
+     
+2. Visual studio Code or any other editor like SublimeText
+  * run StartDnx.cmd
+
 ### components overview
 #### IdSvrHost
 An asp.net core project containing Thinktecture's IdentityServer version 4. We use simple in memory Clients (for AureliaAspNetApp and AureliaWebsite) , Scopes and Users. 
