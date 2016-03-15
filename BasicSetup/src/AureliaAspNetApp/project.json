@@ -26,8 +26,8 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
-    "IdentityModel": "2.0.0-alpha2",
-    "IdSvrConstants": "1.0.0-*"
+    "IdentityModel": "2.0.0-alpha2"
+    
   },
 
   "commands": {

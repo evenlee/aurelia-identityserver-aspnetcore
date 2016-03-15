@@ -87,7 +87,7 @@ namespace WebApi
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             app.UseIdentityServerAuthentication(options =>
             {
-                options.Authority = IdSvrConstants.Constants.STS;
+                options.Authority = Constants.STS;
                 options.ScopeName = "crm";
                 options.ScopeSecret = "secret";
 

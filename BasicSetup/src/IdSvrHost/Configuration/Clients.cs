@@ -15,21 +15,21 @@ namespace IdSvrHost.Configuration
                     ClientName = "Aurelia AspNet App",
                     ClientUri="http://identityserver1.io",
                     ClientSecrets = new List<Secret> {
-                         new Secret(IdSvrConstants.Constants.ClientSecret.Sha256())
+                         new Secret(AppConstants.ClientSecret.Sha256())
                     },
                     Flow = Flows.AuthorizationCode,
                     RequireConsent = true,
                     AllowAccessToAllScopes=false,
                     AllowRememberConsent = true,
                     RedirectUris = new List<string> {
-                        IdSvrConstants.Constants.MVC,
+                        AppConstants.MVC,
                     },
                     PostLogoutRedirectUris = new List<string> {
-                        IdSvrConstants.Constants.MVC,
+                        AppConstants.MVC,
                     },
                       AllowedCorsOrigins = new List<string>
                     {
-                        IdSvrConstants.Constants.MVC,
+                        AppConstants.MVC,
                     },
                     AllowedScopes = new List<string> {
                         StandardScopes.OpenId.Name,
@@ -55,23 +55,23 @@ namespace IdSvrHost.Configuration
                     //AllowAccessToAllScopes=true,
                     AllowRememberConsent = false,
                     RedirectUris = new List<string> {
-                        IdSvrConstants.Constants.MVC,
-                        IdSvrConstants.Constants.AureliaWebSiteApp,
-                        IdSvrConstants.Constants.NodeJsApp,
+                        AppConstants.MVC,
+                        AppConstants.AureliaWebSiteApp,
+                        AppConstants.NodeJsApp,
 
 
                     },
                     PostLogoutRedirectUris = new List<string> {
-                        IdSvrConstants.Constants.MVC,
-                        IdSvrConstants.Constants.AureliaWebSiteApp,
-                        IdSvrConstants.Constants.NodeJsApp,
+                        AppConstants.MVC,
+                        AppConstants.AureliaWebSiteApp,
+                        AppConstants.NodeJsApp,
 
                     },
                       AllowedCorsOrigins = new List<string>
                     {
-                        IdSvrConstants.Constants.MVC,
-                        IdSvrConstants.Constants.AureliaWebSiteApp,
-                        IdSvrConstants.Constants.NodeJsApp,
+                        AppConstants.MVC,
+                        AppConstants.AureliaWebSiteApp,
+                        AppConstants.NodeJsApp,
                     },
                     AllowedScopes = new List<string> {
                        StandardScopes.OpenId.Name,

@@ -24,7 +24,7 @@ namespace AureliaAspNetApp.Controllers
         [HttpPost()]
         public async Task<ActionResult> Exchange([FromBody]TokenExchangeInput tokenExchangeInput)
         {
-            var client = new TokenClient(IdSvrConstants.Constants.STSTokenEndpoint, "AureliaAspNetApp", IdSvrConstants.Constants.ClientSecret);
+            var client = new TokenClient(Constants.STSTokenEndpoint, "AureliaAspNetApp", Constants.ClientSecret);
             var tokenResponse = await client.RequestAuthorizationCodeAsync(tokenExchangeInput.Code, tokenExchangeInput.RedirectUri);
             return Json(new TokenResponse { Token = tokenResponse.AccessToken });
         }

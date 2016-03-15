@@ -18,7 +18,6 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
     "IdentityServer4.AccessTokenValidation": "1.0.0-beta3",
     "Microsoft.AspNet.Authorization": "1.0.0-rc1-final",
-    "IdSvrConstants": "1.0.0-*"
   },
 
   "commands": {

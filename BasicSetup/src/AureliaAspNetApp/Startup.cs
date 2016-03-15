@@ -76,7 +76,7 @@ namespace AureliaAspNetApp
             //TODO refine cors
             app.UseCors(policy =>
             {
-                policy.WithOrigins(new string[] { IdSvrConstants.Constants.MVC });
+                policy.WithOrigins(new string[] { Constants.MVC });
                 policy.AllowAnyHeader();
                 policy.AllowAnyMethod();
             });

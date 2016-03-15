@@ -6,7 +6,6 @@
 
   "dependencies": {
     "IdentityServer4": "1.0.0-beta1",
-    "IdSvrConstants": "1.0.0-*",
     "Microsoft.ApplicationInsights.AspNet": "1.0.0-rc1",
     "Microsoft.AspNet.Authentication.Facebook": "1.0.0-rc1-final",
     "Microsoft.AspNet.Diagnostics": "1.0.0-rc1-final",
