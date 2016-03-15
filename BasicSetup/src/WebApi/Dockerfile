@@ -40,7 +40,7 @@ ENV PATH $PATH:$DNX_USER_HOME/runtimes/default/bin
 
 
 COPY . /app
-WORKDIR /app/WebApi
+WORKDIR /app
 RUN ["dnu", "restore"]
 
 EXPOSE 57391/tcp

@@ -40,8 +40,8 @@ ENV PATH $PATH:$DNX_USER_HOME/runtimes/default/bin
 
 
 COPY . /app
-WORKDIR /app/AureliaAspNetApp
+WORKDIR /app
 RUN ["dnu", "restore"]
 
-EXPOSE 49849/tcp
-ENTRYPOINT ["dnx", "-p", "project.json", "web","--server.urls=http://0.0.0.0:49849"]
+EXPOSE 22530/tcp
+ENTRYPOINT ["dnx", "-p", "project.json", "web","--server.urls=http://0.0.0.0:22530"]
