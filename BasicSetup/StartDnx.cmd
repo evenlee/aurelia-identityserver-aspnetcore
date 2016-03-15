@@ -1,4 +1,4 @@
-call dnvm use 1.0.0-rc1-final
+call dnvm use 1.0.0-rc1-update1 -r coreclr
 set ASPNET_ENV=Development
 set baseDir=%~dp0\src
 
