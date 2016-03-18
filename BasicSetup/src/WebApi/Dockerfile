@@ -39,8 +39,8 @@ RUN LIBUV_VERSION=1.4.2 \
 ENV PATH $PATH:$DNX_USER_HOME/runtimes/default/bin
 
 
-COPY . /app
-WORKDIR /app
+COPY . /WebApi
+WORKDIR /WebApi
 RUN ["dnu", "restore"]
 
 EXPOSE 57391/tcp

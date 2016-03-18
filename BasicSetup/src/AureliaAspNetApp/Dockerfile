@@ -39,8 +39,8 @@ RUN LIBUV_VERSION=1.4.2 \
 ENV PATH $PATH:$DNX_USER_HOME/runtimes/default/bin
 
 
-COPY . /app
-WORKDIR /app
+COPY . /AureliaAspNetApp
+WORKDIR /AureliaAspNetApp
 RUN ["dnu", "restore"]
 
 EXPOSE 49849/tcp
