@@ -1,6 +1,6 @@
 ﻿import {bindable } from 'aurelia-framework';
 import {inject} from 'aurelia-framework';
-import {AuthService} from 'aurelia-auth';
+import {AuthService} from 'aurelia-authentication';
 import {BindingEngine} from 'aurelia-framework'; 
 
 @inject(AuthService, BindingEngine)

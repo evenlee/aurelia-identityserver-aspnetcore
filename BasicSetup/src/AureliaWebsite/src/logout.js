@@ -1,7 +1,7 @@
-import {AuthService} from 'aurelia-auth';
+import {AuthService} from 'aurelia-authentication';
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
-
+import 'isomorphic-fetch';
 @inject(AuthService, HttpClient )
 
 export class Logout{
