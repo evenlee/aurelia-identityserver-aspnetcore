@@ -19,7 +19,7 @@
   },
    "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js --hot --inline --progress --devtool eval -d",
-    "build": "webpack --config webpack.config.js --progress --profile --watch",
+    "build": "webpack --config webpack.config.js --progress --profile",
     "prod": "webpack -p --config webpack.prod.config.js --progress --devtool source-map",
     "test": "karma start"
   },

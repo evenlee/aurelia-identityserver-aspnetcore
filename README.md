@@ -50,3 +50,27 @@ and the TokenController allows the aurelia app to exchange an authorization code
 #### AureliaWebsite
 A simple website running the aurelia app as static asset. So the aurelia application has no real backend here (as it has in AureliaAspNetApp). 
 This implies that we can NOT use the oauth AUTHORIZATION CODE FLOW here. Instead we use the IMPLICIT flow.
+
+### Dockerfiles and docker-compose
+The indivudual projects contain a Dockerfile. In the root src folder you will find a docker-compose.yml file.
+Make sure you have a linux box at your disposal (DigitalOcean, Azure, VirtualBox, ...) and install docker
+and docker-compose:
+
+* step 1: install docker: follow instructions from https://docs.docker.com/engine/installation/linux/ubuntulinux/
+* step 2: install docker-compose:
+```
+    sudo apt-get -y install python-pip
+    sudo pip install docker-compose
+```
+* step 3: git clone this repository on the linux box:
+```
+git clone https://github.com/paulvanbladel/aurelia-identityserver-aspnetcore.git
+```
+* step 4: run docker-compose
+```
+cd aurelia-identityserver-aspnetcore/basicSetup/src/
+sudo docker-compose up
+```
+* step 5: take a coffee or two and wait a bit
+
+

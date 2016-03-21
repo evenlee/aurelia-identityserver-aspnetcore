@@ -48,7 +48,7 @@
     "**.vspscc"
   ],
   "scripts": {
-    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ],
+    "prepublish": [ "npm install" ],
     "watch": [ "gulp watch" ]
   }
 }

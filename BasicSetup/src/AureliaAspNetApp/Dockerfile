@@ -50,6 +50,7 @@ RUN apt-get install -y nodejs
 COPY . /AureliaAspNetApp
 WORKDIR /AureliaAspNetApp
 RUN ["dnu", "restore"]
-RUN ["gulp", "watchWithoutServe"]
+RUN ["npm","install"]
+RUN ["npm", "run","build"]
 EXPOSE 49849/tcp
 ENTRYPOINT ["dnx", "-p", "project.json", "web","--server.urls=http://0.0.0.0:49849"]
