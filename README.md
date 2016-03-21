@@ -46,7 +46,7 @@ The purpose of the IdentityController is to visualize the user's claims through 
 #### AureliaAspNetApp
 An asp.net core project which is basically an mvc project with only two controllers and one view. The only purpose is to 'serve' an aurelia application. 
 But, since we have a 'backend', we can use the oauth AUTHORIZATION CODE FLOW. The Home controller 'serves' the aurelia application 
-and the TokenController allows the aurelia app to exchange an authorization code received with the users consent, with an access token.
+and the TokenController allows the aurelia app to exchange an authorization code received with the users consent, for an access token.
 #### AureliaWebsite
 A simple website running the aurelia app as static asset. So the aurelia application has no real backend here (as it has in AureliaAspNetApp). 
 This implies that we can NOT use the oauth AUTHORIZATION CODE FLOW here. Instead we use the IMPLICIT flow.
