@@ -1,18 +1,16 @@
-import 'bootstrap';
+import {bootstrap} from 'aurelia-bootstrapper-webpack';
+
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/font-awesome/css/font-awesome.css';
 import config from './authConfig';
-export function configure(aurelia) {
+bootstrap(function(aurelia) {
+    
   aurelia.use
     .standardConfiguration()
     .developmentLogging()
-    .plugin('aurelia-auth', (baseConfig)=>{   //the name of plugin becomes 'paulvanbladel/aurelia-auth'
+    .plugin('aurelia-authentication', (baseConfig)=>{   //the name of plugin becomes 'paulvanbladel/aurelia-auth'
         baseConfig.configure(config);
     });
-  //Uncomment the line below to enable animation.
-  //aurelia.use.plugin('aurelia-animator-css');
-  //if the css animator is enabled, add swap-order="after" to all router-view elements
 
-  //Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
-  //aurelia.use.plugin('aurelia-html-import-template-loader')
-
-  aurelia.start().then(a => a.setRoot());
-}
+  aurelia.start().then(() => aurelia.setRoot('app', document.body));
+});
