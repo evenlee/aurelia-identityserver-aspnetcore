@@ -68,9 +68,10 @@ git clone https://github.com/paulvanbladel/aurelia-identityserver-aspnetcore.git
 ```
 * step 4: run docker-compose
 ```
-cd aurelia-identityserver-aspnetcore/basicSetup/src/
-sudo docker-compose up
+    cd aurelia-identityserver-aspnetcore/basicSetup/src/
+    sudo docker-compose up
 ```
 * step 5: take a coffee or two and wait a bit
+
 
 
