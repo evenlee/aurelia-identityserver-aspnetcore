@@ -38,6 +38,14 @@ RUN LIBUV_VERSION=1.4.2 \
 
 ENV PATH $PATH:$DNX_USER_HOME/runtimes/default/bin
 
+RUN apt-get -qq update && apt-get -qqy --no-install-recommends install \
+    git \
+    unzip
+
+
+RUN curl -sL https://deb.nodesource.com/setup_5.x |  bash -
+RUN apt-get install -y nodejs
+
 
 COPY . /AureliaAspNetApp
 WORKDIR /AureliaAspNetApp
