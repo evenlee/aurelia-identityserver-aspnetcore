@@ -1,0 +1,20 @@
+version: '2'
+services:
+  aureliaaspnetapp:
+    build:
+      context: ./AureliaAspNetApp
+    ports:
+     - "49849:49849"
+    depends_on:
+     - idsvrhost
+     - webapi
+  idsvrhost:
+    build:
+      context: ./IdSvrHost
+    ports:
+     - "22530:22530"
+  webapi:
+    build:
+      context: ./WebApi
+    ports:
+     - "57391:57391"

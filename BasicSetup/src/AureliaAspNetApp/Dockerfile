@@ -42,6 +42,6 @@ ENV PATH $PATH:$DNX_USER_HOME/runtimes/default/bin
 COPY . /AureliaAspNetApp
 WORKDIR /AureliaAspNetApp
 RUN ["dnu", "restore"]
-
+RUN ["gulp", "watchWithoutServe"]
 EXPOSE 49849/tcp
 ENTRYPOINT ["dnx", "-p", "project.json", "web","--server.urls=http://0.0.0.0:49849"]
