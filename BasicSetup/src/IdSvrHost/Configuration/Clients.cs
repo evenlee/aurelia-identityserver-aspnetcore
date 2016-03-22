@@ -1,11 +1,18 @@
 ﻿using IdentityServer4.Core.Models;
+using Microsoft.Extensions.OptionsModel;
 using System.Collections.Generic;
 
 namespace IdSvrHost.Configuration
 {
     public class Clients
     {
-        public static IEnumerable<Client> Get()
+        private readonly AppSettings _settings;
+
+        public Clients(IOptions<AppSettings> settings)
+        {
+            _settings = settings.Value;
+        }
+        public IEnumerable<Client> Get()
         {
             return new List<Client>
             {
@@ -15,21 +22,21 @@ namespace IdSvrHost.Configuration
                     ClientName = "Aurelia AspNet App",
                     ClientUri="http://identityserver1.io",
                     ClientSecrets = new List<Secret> {
-                         new Secret(AppConstants.ClientSecret.Sha256())
+                         new Secret(_settings.ClientSecret.Sha256())
                     },
                     Flow = Flows.AuthorizationCode,
                     RequireConsent = true,
                     AllowAccessToAllScopes=false,
                     AllowRememberConsent = true,
                     RedirectUris = new List<string> {
-                        AppConstants.MVC,
+                        _settings.MVC,
                     },
                     PostLogoutRedirectUris = new List<string> {
-                        AppConstants.MVC,
+                        _settings.MVC,
                     },
                       AllowedCorsOrigins = new List<string>
                     {
-                        AppConstants.MVC,
+                        _settings.MVC,
                     },
                     AllowedScopes = new List<string> {
                         StandardScopes.OpenId.Name,
@@ -55,23 +62,23 @@ namespace IdSvrHost.Configuration
                     //AllowAccessToAllScopes=true,
                     AllowRememberConsent = false,
                     RedirectUris = new List<string> {
-                        AppConstants.MVC,
-                        AppConstants.AureliaWebSiteApp,
-                        AppConstants.NodeJsApp,
+                        _settings.MVC,
+                        _settings.AureliaWebSiteApp,
+                        _settings.NodeJsApp,
 
 
                     },
                     PostLogoutRedirectUris = new List<string> {
-                        AppConstants.MVC,
-                        AppConstants.AureliaWebSiteApp,
-                        AppConstants.NodeJsApp,
+                        _settings.MVC,
+                        _settings.AureliaWebSiteApp,
+                        _settings.NodeJsApp,
 
                     },
                       AllowedCorsOrigins = new List<string>
                     {
-                        AppConstants.MVC,
-                        AppConstants.AureliaWebSiteApp,
-                        AppConstants.NodeJsApp,
+                        _settings.MVC,
+                        _settings.AureliaWebSiteApp,
+                        _settings.NodeJsApp,
                     },
                     AllowedScopes = new List<string> {
                        StandardScopes.OpenId.Name,

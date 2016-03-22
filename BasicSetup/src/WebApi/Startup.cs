@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNet.Authorization;
 using WebApi.AuthorizationHandlers;
+using Microsoft.Extensions.OptionsModel;
 
 namespace WebApi
 {
@@ -20,7 +21,9 @@ namespace WebApi
         {
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json");
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables("Aurelia_Sample_")
+                ;
 
             if (env.IsEnvironment("Development"))
             {
@@ -28,7 +31,6 @@ namespace WebApi
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
 
-            builder.AddEnvironmentVariables();
             Configuration = builder.Build().ReloadOnChanged("appsettings.json");
         }
 
@@ -39,6 +41,8 @@ namespace WebApi
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
             //services.AddCors();
             //services.AddCors(options =>
             //{
@@ -59,15 +63,20 @@ namespace WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IOptions<AppSettings> settings)
         {
+
+            //the baseURI setting is injected in the app settings from an environment variable
+            //the reason is that at build time we don't know the ip address of the docker host
+            settings.Value.BaseURI = Configuration["BaseURI"];
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             //TODO refine cors
             app.UseCors(policy =>
             {
-                policy.WithOrigins(new string[] { "http://localhost:49849", "http://localhost:9000", "http://localhost:9999" });
+                policy.WithOrigins(new string[] { settings.Value.MVC, settings.Value.AureliaWebSiteApp });
                 policy.AllowAnyHeader();
                 policy.AllowAnyMethod();
             });
@@ -87,7 +96,7 @@ namespace WebApi
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             app.UseIdentityServerAuthentication(options =>
             {
-                options.Authority = Constants.STS;
+                options.Authority = settings.Value.STS;
                 options.ScopeName = "crm";
                 options.ScopeSecret = "secret";
 
