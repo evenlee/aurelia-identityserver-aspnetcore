@@ -13,6 +13,7 @@
       "launchBrowser": true,
       "launchUrl": "http://localhost:49849",
       "environmentVariables": {
+        "Aurelia_Sample_BaseURI": "localhost",
         "Hosting:Environment": "Development"
       }
     },

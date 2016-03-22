@@ -1,5 +1,6 @@
 ﻿using IdentityModel.Client;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Extensions.OptionsModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,12 @@ namespace AureliaAspNetApp.Controllers
 {
     public class TokenController: Controller
     {
+        private readonly AppSettings _settings;
+
+        public TokenController(IOptions<AppSettings> settings)
+        {
+            _settings = settings.Value;
+        }
         public class TokenExchangeInput
         {
             public string Code { get; set; }
@@ -24,7 +31,7 @@ namespace AureliaAspNetApp.Controllers
         [HttpPost()]
         public async Task<ActionResult> Exchange([FromBody]TokenExchangeInput tokenExchangeInput)
         {
-            var client = new TokenClient(Constants.STSTokenEndpoint, "AureliaAspNetApp", Constants.ClientSecret);
+            var client = new TokenClient(_settings.STSTokenEndpoint, "AureliaAspNetApp", _settings.ClientSecret);
             var tokenResponse = await client.RequestAuthorizationCodeAsync(tokenExchangeInput.Code, tokenExchangeInput.RedirectUri);
             return Json(new TokenResponse { Token = tokenResponse.AccessToken });
         }

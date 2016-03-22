@@ -1,5 +1,6 @@
 call dnvm use 1.0.0-rc1-update1 -r coreclr
 set ASPNET_ENV=Development
+set Aurelia_Sample_BaseURI=localhost
 set baseDir=%~dp0\src
 
 start "aurelia asp.net"  dnx-watch --project %baseDir%\AureliaAspNetApp --dnx-args web --server.urls=http://localhost:49849/ 

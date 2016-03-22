@@ -1,4 +1,6 @@
 version: '2'
+environment:
+  Aurelia_Sample_BaseURI: 192.168.0.206
 services:
   aureliaaspnetapp:
     build:
