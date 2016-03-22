@@ -17,13 +17,13 @@
     "type": "git",
     "url": "http://github.com/aurelia/skeleton-navigation"
   },
-   "scripts": {
+  "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js --hot --inline --progress --devtool eval -d",
     "build": "webpack --config webpack.config.js --progress --profile",
     "prod": "webpack -p --config webpack.prod.config.js --progress --devtool source-map",
     "test": "karma start"
   },
-   "dependencies": {
+  "dependencies": {
     "aurelia-authentication": "^0.12.15",
     "aurelia-bootstrapper-webpack": "^0.1.0",
     "aurelia-event-aggregator": "^1.0.0-beta.1.1.1",

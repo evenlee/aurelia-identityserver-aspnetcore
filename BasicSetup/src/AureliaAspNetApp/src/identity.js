@@ -15,7 +15,7 @@ export class Identity{
     }
 
     activate(){
-        return this.http.fetch("http://localhost:57391/api/Identity")
+        return this.http.fetch("http://192.168.0.206:57391/api/Identity")
 		.then(response => {
 		    return response.json();
 		})
