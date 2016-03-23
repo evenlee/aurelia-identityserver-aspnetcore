@@ -15,7 +15,9 @@ export class Identity{
     }
 
     activate(){
-        return this.http.fetch("http://localhost:57391/api/Identity")
+        let url = config.apiServerBaseAddress + ':57391/api/Identity';
+
+        return this.http.fetch(url)
 		.then(response => {
 		    return response.json();
 		})

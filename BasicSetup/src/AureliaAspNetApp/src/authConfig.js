@@ -1,4 +1,5 @@
 ﻿var configForDevelopment = {
+    apiServerBaseAddress: 'http://localhost',
     profileUrl: 'http://localhost:22530/connect/userinfo',
     //profileUrl: 'http://localhost:63381/connect/userinfo',
     providers: {
@@ -52,7 +53,7 @@
 };
 
 var configForProduction = {
-    //TODO the fixed IP address should be 'injected' in one way or another :)
+    apiServerBaseAddress: 'http://192.168.0.206',
     profileUrl: 'http://192.168.0.206:22530/connect/userinfo',
     //profileUrl: 'http://http://192.168.0.206:63381/connect/userinfo',
     providers: {
