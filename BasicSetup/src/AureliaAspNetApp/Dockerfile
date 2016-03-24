@@ -1,5 +1,5 @@
 FROM debian:jessie
-
+ARG hostip
 ENV DNX_VERSION 1.0.0-rc1-update1
 ENV DNX_USER_HOME /opt/DNX_BRANCH
 #Currently the CLR packages don't have runtime ids to handle debian:jessie but
@@ -53,12 +53,10 @@ RUN ["dnu", "restore"]
 RUN ["npm","install"]
 
 
-#docker-provided-apiServerBaseAddress in ./src/authConfig.js needs to be replaced with 'http://192.168.0.206'
-#currently the var hostip isn't used, variable expansion doesn't work inside run command
-ENV hostip=192.168.0.206
+#the docker compose environment var is injected here in the SPA javascript file authConfig.js 
+#for magic see following line
 
-RUN ["sed", "-i", "s/docker-provided-apiServerBaseAddress/192.168.0.206/g", "./src/authConfig.js"]
-
+RUN sed -i s/docker-provided-apiServerBaseAddress/$hostip/g ./src/authConfig.js
 
 RUN ["npm", "run","build"]
 EXPOSE 49849/tcp

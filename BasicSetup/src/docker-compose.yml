@@ -3,6 +3,8 @@ services:
   aureliaaspnetapp:
     build:
       context: ./AureliaAspNetApp
+      args:
+        hostip: REPLACE_WITH_DOCKERHOSTIP
     ports:
      - "49849:49849"
     depends_on:
