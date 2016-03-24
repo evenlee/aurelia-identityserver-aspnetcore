@@ -53,7 +53,7 @@
 };
 
 var configForProduction = {
-    apiServerBaseAddress: 'docker-provided-apiServerBaseAddress',
+    apiServerBaseAddress: 'http://docker-provided-apiServerBaseAddress',
     profileUrl: 'http://192.168.0.206:22530/connect/userinfo',
     //profileUrl: 'http://http://192.168.0.206:63381/connect/userinfo',
     providers: {
