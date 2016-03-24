@@ -54,14 +54,14 @@
 
 var configForProduction = {
     apiServerBaseAddress: 'http://docker-provided-apiServerBaseAddress',
-    profileUrl: 'http://192.168.0.206:22530/connect/userinfo',
+    profileUrl: 'http://docker-provided-apiServerBaseAddress:22530/connect/userinfo',
     //profileUrl: 'http://http://192.168.0.206:63381/connect/userinfo',
     providers: {
 
         identSrv : {
             name: 'identSrv',
             url: 'Token/Exchange',
-            authorizationEndpoint: 'http://192.168.0.206:22530/connect/authorize', //if this ends with slash --> game over
+            authorizationEndpoint: 'http://docker-provided-apiServerBaseAddress:22530/connect/authorize', //if this ends with slash --> game over
             //authorizationEndpoint: 'http://http://192.168.0.206:63381/connect/authorize', //if this ends with slash --> game over
 
             redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
