@@ -9,18 +9,18 @@ services:
      - idsvrhost
      - webapi
     environment:
-     -  Aurelia_Sample_BaseURI=192.168.0.206
+     -  Aurelia_Sample_BaseURI=REPLACE_WITH_DOCKERHOSTIP
   idsvrhost:
     build:
       context: ./IdSvrHost
     ports:
      - "22530:22530"
     environment:
-     -  Aurelia_Sample_BaseURI=192.168.0.206
+     -  Aurelia_Sample_BaseURI=REPLACE_WITH_DOCKERHOSTIP
   webapi:
     build:
       context: ./WebApi
     ports:
      - "57391:57391"
     environment:
-     -  Aurelia_Sample_BaseURI=192.168.0.206
+     -  Aurelia_Sample_BaseURI=REPLACE_WITH_DOCKERHOSTIP

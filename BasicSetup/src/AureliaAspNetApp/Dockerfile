@@ -51,6 +51,15 @@ COPY . /AureliaAspNetApp
 WORKDIR /AureliaAspNetApp
 RUN ["dnu", "restore"]
 RUN ["npm","install"]
+
+
+#docker-provided-apiServerBaseAddress in ./src/authConfig.js needs to be replaced with 'http://192.168.0.206'
+#currently the var hostip isn't used, variable expansion doesn't work inside run command
+ENV hostip=192.168.0.206
+
+RUN ["sed", "-i", "s/docker-provided-apiServerBaseAddress/192.168.0.206/g", "./src/authConfig.js"]
+
+
 RUN ["npm", "run","build"]
 EXPOSE 49849/tcp
 ENTRYPOINT ["dnx", "-p", "project.json", "web","--server.urls=http://0.0.0.0:49849"]
