@@ -52,7 +52,7 @@ A simple website running the aurelia app as static asset. So the aurelia applica
 This implies that we can NOT use the oauth AUTHORIZATION CODE FLOW here. Instead we use the IMPLICIT flow.
 
 ### Dockerfiles and docker-compose
-The indivudual projects contain a Dockerfile. In the root src folder you will find a docker-compose.yml file.
+The individual projects contain a Dockerfile. In the root src folder you will find a docker-compose.yml file.
 Make sure you have a linux box at your disposal (DigitalOcean, Azure, VirtualBox, ...) and install docker
 and docker-compose:
 
@@ -69,9 +69,51 @@ git clone https://github.com/paulvanbladel/aurelia-identityserver-aspnetcore.git
 * step 4: run docker-compose
 ```
     cd aurelia-identityserver-aspnetcore/basicSetup/src/
-    sudo docker-compose up
+    sudo sh  start-docker-compose.sh
 ```
 * step 5: take a coffee or two and wait a bit
+
+### Understanding the docker-compose approach
+A common difficulty in software deployment is parameter configuration management. In this sample app we have configuration both on the level of the various
+.NET projects, but also on the level of the SPA's (i.e. the Aurelia single page applications).
+So, also with docker we need to deal with parameters. The most important param to deal with in this sample, is the IP address of the docker host.
+
+The .NET projects all have a class containing settings: AppSettings.cs . The Ip address setting is stored in a property BaseUri which is received via an environment variable.
+
+The docker-compose file creates this environment variable called Aurelia_Sample_BaseURI. Obviously, we could hard code an IP Address in the docker-compose file, but we tried to be
+more flexible. the bash script start-docker-compose.sh applies a neat trick to retrieve the IP Address and inject it in the docker-compose.yml file.
+```
+#!/bin/bash
+
+# get ip address from this docker host
+HOSTIP=$(ip -f inet -o addr show eth0|cut -d\  -f 7 | cut -d/ -f 1)
+# run docker-compose with patched docker-compose file  containing the docker host ip address instead of the placeholder
+sed -e "s/REPLACE_WITH_DOCKERHOSTIP/$HOSTIP/g" docker-compose.yml | docker-compose --file - up -dpaul@ubuntu:~/aurelia-identityserver-aspnetcore/BasicSetup/src$
+```
+
+A more challenging problem is to inject the baseURI in the SPA. We have a two step approach here.
+
+The docker-compose file for the SPA uses an ARGS section:
+```
+ aureliaaspnetapp:
+    build:
+      context: ./AureliaAspNetApp
+      args:
+        hostip: REPLACE_WITH_DOCKERHOSTIP
+ ```
+ so a variable hostip (containing the IP address of the docker host) will be passed to the dockerfile of AureliaAspNetApp.
+ 
+ When the dockerfile receives this hostip variable it's used to make text file replacement on the file ./src/authConfig.js
+ 
+ ```
+ RUN sed -i s/docker-provided-apiServerBaseAddress/$hostip/g ./src/authConfig.js
+
+ ```
+ 
+ Indeed, some magic but it works.
+
+
+
 
 
 
