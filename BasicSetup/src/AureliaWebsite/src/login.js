@@ -1,4 +1,4 @@
-import {AuthService} from 'aurelia-authentication';
+import {AuthService} from 'aurelia-auth';
 import {inject} from 'aurelia-framework';
 @inject(AuthService )
 

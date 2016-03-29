@@ -1,4 +1,4 @@
-import {AuthService} from 'aurelia-authentication';
+import {AuthService} from 'aurelia-auth';
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import 'isomorphic-fetch';

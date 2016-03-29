@@ -8,7 +8,7 @@ bootstrap(function(aurelia) {
   aurelia.use
     .standardConfiguration()
     .developmentLogging()
-    .plugin('aurelia-authentication', (baseConfig)=>{   //the name of plugin becomes 'paulvanbladel/aurelia-auth'
+    .plugin('aurelia-auth', (baseConfig)=>{   //the name of plugin becomes 'paulvanbladel/aurelia-auth'
         baseConfig.configure(config);
     });
 

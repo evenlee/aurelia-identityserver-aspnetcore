@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-framework';
-import {FetchConfig} from 'aurelia-authentication';
+import {FetchConfig} from 'aurelia-auth';
 
 @inject(FetchConfig) 
 export class App {
