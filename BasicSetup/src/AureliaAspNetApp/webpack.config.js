@@ -19,7 +19,11 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new AureliaWebpackPlugin()
+    new AureliaWebpackPlugin({
+      includeSubModules: [
+        { moduleId: 'aurelia-auth' }
+      ]
+    })
   ],
   module: {
     loaders: [

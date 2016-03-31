@@ -19,7 +19,11 @@ module.exports = {
     chunkFilename: '[id]' + outputFileTemplateSuffix + '.js'
   },
   plugins: [
-    new AureliaWebpackPlugin(),
+    new AureliaWebpackPlugin({
+      includeSubModules: [
+        { moduleId: 'aurelia-auth' }
+      ]
+    }),
     new HtmlWebpackPlugin({
       title: 'Aurelia webpack skeleton - ' + pkg.version,
       template: 'index.prod.html',
