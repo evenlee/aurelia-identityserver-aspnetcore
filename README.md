@@ -13,9 +13,6 @@ This sample shows aurelia in combination with a web api and identityserver 4. Th
   * cd src/IdSvrHost
     * dnu restore
   
-  * cd src/IdSvrConstants
-    * dnu restore
-  
   * cd src/WebApi
     * dnu restore
     
