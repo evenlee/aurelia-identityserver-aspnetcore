@@ -1,5 +1,5 @@
 ﻿using IdentityServer4.Core.Models;
-using Microsoft.Extensions.OptionsModel;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 
 namespace IdSvrHost.Configuration
@@ -24,7 +24,7 @@ namespace IdSvrHost.Configuration
                     ClientSecrets = new List<Secret> {
                          new Secret(_settings.ClientSecret.Sha256())
                     },
-                    Flow = Flows.AuthorizationCode,
+                    AllowedGrantTypes = GrantTypes.Code,
                     RequireConsent = true,
                     AllowAccessToAllScopes=false,
                     AllowRememberConsent = true,
@@ -57,7 +57,7 @@ namespace IdSvrHost.Configuration
                     ClientSecrets = new List<Secret> {
                          new Secret("secret".Sha256())
                     },
-                    Flow = Flows.Implicit,
+                     AllowedGrantTypes = GrantTypes.Implicit,
                     RequireConsent = true,
                     //AllowAccessToAllScopes=true,
                     AllowRememberConsent = false,

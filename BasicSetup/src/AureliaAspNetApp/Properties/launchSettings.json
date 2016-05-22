@@ -14,13 +14,17 @@
       "launchUrl": "http://localhost:49849",
       "environmentVariables": {
         "Aurelia_Sample_BaseURI": "localhost",
-        "Hosting:Environment": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "web": {
-      "commandName": "web",
+    "AureliaAspNetApp": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:49849",
       "environmentVariables": {
-        "Hosting:Environment": "Development"
+        "Aurelia_Sample_BaseURI": "localhost",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_SERVER.URLS": "http://localhost:49849"
       }
     }
   }

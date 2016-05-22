@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.OptionsModel;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
 
 namespace AureliaAspNetApp
@@ -15,14 +15,16 @@ namespace AureliaAspNetApp
             // Set up configuration sources.
 
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables("Aurelia_Sample_");
+                //.AddJsonFile("appsettings.json")
+                //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables("Aurelia_Sample_")
+                .AddEnvironmentVariables("ASPNETCORE_")
+                ;
 
             if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                //builder.AddUserSecrets();
 
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
@@ -40,7 +42,11 @@ namespace AureliaAspNetApp
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             //appsettings to strongly typed class AppSettings 
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            //TODO RC2
+            //services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
+            
+
             services.AddMvc().AddJsonOptions(opts =>
             {
                 opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -50,12 +56,14 @@ namespace AureliaAspNetApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IOptions<AppSettings> settings)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            ILoggerFactory loggerFactory, IOptions<AppSettings> settings)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            loggerFactory.CreateLogger("debug").LogCritical(Configuration["BaseURI"]);
+            //loggerFactory.CreateLogger("trace").LogCritical(Configuration["BaseURI"]);
+            System.Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
             app.UseApplicationInsightsRequestTelemetry();
 
             //the baseURI setting is injected in the app settings from an environment variable
@@ -72,8 +80,8 @@ namespace AureliaAspNetApp
                 app.UseExceptionHandler("/Home/Error");
                 
             }
-
-            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+            //RC2
+            //app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
 
             app.UseApplicationInsightsExceptionTelemetry();
 
@@ -99,7 +107,6 @@ namespace AureliaAspNetApp
             });
         }
 
-        // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+       
     }
 }

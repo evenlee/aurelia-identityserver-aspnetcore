@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -12,43 +12,42 @@ using IdSvrHost.Extensions;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
-using Microsoft.AspNet.Authentication.Facebook;
 using IdentityServer4.Core.Configuration;
-using IdentityServer4.Core.Services.Default;
-using Microsoft.Extensions.OptionsModel;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace IdSvrHost
 {
     public class Startup
     {
-        private readonly IApplicationEnvironment _environment;
-        public IConfigurationRoot Configuration { get; set; }
+        private readonly IHostingEnvironment _environment;
+        public IConfiguration Configuration { get; set; }
 
-        public Startup(IApplicationEnvironment environment, IHostingEnvironment env)
+        public Startup( IHostingEnvironment env)
         {
-            _environment = environment;
+            _environment = env;
 
             var builder = new ConfigurationBuilder()
-                 .AddJsonFile("appsettings.json")
-                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                 .AddEnvironmentVariables("Aurelia_Sample_");
+                 .SetBasePath(env.ContentRootPath)
+                 .AddEnvironmentVariables("Aurelia_Sample_")
+                 .AddEnvironmentVariables("ASPNETCORE_");
             Configuration = builder.Build();
 
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //appsettings to strongly typed class AppSettings 
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            
+            services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
+            services.Configure<AppSettings>((a) =>
+                 {
+                     a.BaseURI = Configuration["BaseURI"];
 
-            //services.Configure<AppSettings>((a) =>
-            //     {
-            //         a.BaseURI = Configuration["BaseURI"];
+                 });
+            System.Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxx " + Path.Combine(_environment.ContentRootPath, "idsrv4test.pfx"));
 
-            //     });
-
-            var cert = new X509Certificate2(Path.Combine(_environment.ApplicationBasePath, "idsrv4test.pfx"), "idsrv3test");
-
+            var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "idsrv4test.pfx"), "idsrv3test");
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             var builder = services.AddIdentityServer(options =>
             {
                 options.SigningCertificate = cert;
@@ -92,13 +91,9 @@ namespace IdSvrHost
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole(LogLevel.Verbose);
-            loggerFactory.AddDebug(LogLevel.Verbose);
+            loggerFactory.AddConsole(LogLevel.Trace);
+            loggerFactory.AddDebug(LogLevel.Trace);
             app.UseDeveloperExceptionPage();
-            app.UseIISPlatformHandler();
-
-
-
 
             //TODO refine CORS
             app.UseCors(policy =>
@@ -125,6 +120,6 @@ namespace IdSvrHost
             //var fbAuthOptions = new FacebookAuthenticationOptions
         }
 
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+      
     }
 }

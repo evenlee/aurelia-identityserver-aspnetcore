@@ -1,6 +1,6 @@
 ﻿using IdentityServer4.Core;
 using IdentityServer4.Core.Services;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Security.Claims;

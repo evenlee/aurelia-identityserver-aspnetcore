@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Builder;
-using Microsoft.Extensions.OptionsModel;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Options;
 
 namespace AureliaAspNetApp.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using IdentityModel;
 using IdentityServer4.Core;
 using IdentityServer4.Core.Services;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Security.Claims;

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
-using Microsoft.AspNet.Authorization;
-using WebApi.AuthorizationHandlers;
-using Microsoft.Extensions.OptionsModel;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace WebApi
 {
@@ -21,7 +16,7 @@ namespace WebApi
         {
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                //.AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables("Aurelia_Sample_")
                 ;
 
@@ -31,7 +26,7 @@ namespace WebApi
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
 
-            Configuration = builder.Build().ReloadOnChanged("appsettings.json");
+            Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -41,7 +36,9 @@ namespace WebApi
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            
+            //TODO RC2
+            //services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             //services.AddCors();
             //services.AddCors(options =>
@@ -65,6 +62,9 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IOptions<AppSettings> settings)
         {
+            //RC2
+            var scopePolicy = new AuthorizationPolicyBuilder().RequireClaim("scope", "crm").Build();
+
 
             //the baseURI setting is injected in the app settings from an environment variable
             //the reason is that at build time we don't know the ip address of the docker host
@@ -86,22 +86,29 @@ namespace WebApi
             // custom middleware to checked each call as it comes in.
 
 
-
-            app.UseIISPlatformHandler();
+            //TODO RC2
+            //app.UseIISPlatformHandler();
 
             app.UseApplicationInsightsRequestTelemetry();
 
             app.UseApplicationInsightsExceptionTelemetry();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-            app.UseIdentityServerAuthentication(options =>
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
-                options.Authority = settings.Value.STS;
-                options.ScopeName = "crm";
-                options.ScopeSecret = "secret";
+                Authority = settings.Value.STS,
+                RequireHttpsMetadata=false,
+                TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    NameClaimType = "name",
+                    RoleClaimType = "role"
+                },
+                //RC2
+                //ScopeName = "crm",
+                //ScopeSecret = "secret",
 
-                options.AutomaticAuthenticate = true;
-                options.AutomaticChallenge = true;
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
             });
 
 
@@ -111,6 +118,7 @@ namespace WebApi
         }
 
         // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+        //RC 2
+        //public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
