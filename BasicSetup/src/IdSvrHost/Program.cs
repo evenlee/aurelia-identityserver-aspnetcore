@@ -22,13 +22,7 @@ namespace IdSvrHost
         private static IConfigurationRoot Configuration;
         public static void Main(string[] args)
         {
-            //var config = new ConfigurationBuilder()
-            //    .AddCommandLine(args)
-            //    .Build();
-            ;
             var builder = new ConfigurationBuilder()
-               //.AddJsonFile("appsettings.json")
-               //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                .AddEnvironmentVariables("Aurelia_Sample_")
                .AddEnvironmentVariables("ASPNETCORE_");
 

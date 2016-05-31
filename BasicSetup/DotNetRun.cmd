@@ -2,8 +2,8 @@ set baseDir=%~dp0\src
 
 set ASPNETCORE_ENVIRONMENT=Development
 set Aurelia_Sample_BaseURI=localhost
-set Aurelia_Sample_API_URL=
-set Aurelia_Sample_MVC_URL=
+set Aurelia_Sample_API_URL=http://%Aurelia_Sample_BaseURI%:57391
+set Aurelia_Sample_MVC_URL=http://%Aurelia_Sample_BaseURI%:49849
 set Aurelia_Sample_STS_URL=http://%Aurelia_Sample_BaseURI%:22530
 
 start cmd.exe /K "cd %baseDir%\IdSvrHost\ && dotnet run" 
