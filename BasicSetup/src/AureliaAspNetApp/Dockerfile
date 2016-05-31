@@ -14,7 +14,7 @@ RUN ["npm","install"]
 #the docker compose environment var is injected here in the SPA javascript file authConfig.js 
 #for magic see following line
 
-RUN sed -i s/docker-provided-apiServerBaseAddress/$hostip/g ./src/authConfig.js
+#RUN sed -i s/docker-provided-apiServerBaseAddress/$hostip/g ./src/authConfig.js
 
 RUN ["npm", "run","build"]
 
