@@ -7,8 +7,9 @@ RUN apt-get install -y nodejs
 
 
 RUN mkdir -p /AureliaAspNetApp
-WORKDIR /AureliaAspNetApp
+
 ONBUILD COPY . /AureliaAspNetApp
+WORKDIR /AureliaAspNetApp
 ONBUILD RUN dotnet restore
 RUN ["npm","install"]
 #the docker compose environment var is injected here in the SPA javascript file authConfig.js 
@@ -16,7 +17,7 @@ RUN ["npm","install"]
 
 #RUN sed -i s/docker-provided-apiServerBaseAddress/$hostip/g ./src/authConfig.js
 
-RUN ["npm", "run","build"]
+#RUN ["npm", "run","build"]
 
 
 EXPOSE 49849/tcp
