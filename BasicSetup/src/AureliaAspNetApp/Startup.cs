@@ -41,11 +41,11 @@ namespace AureliaAspNetApp
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            
             //appsettings to strongly typed class AppSettings 
             //TODO RC2
-            //services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
-            
+            //services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
+           
 
             services.AddMvc().AddJsonOptions(opts =>
             {
@@ -62,8 +62,6 @@ namespace AureliaAspNetApp
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            //loggerFactory.CreateLogger("trace").LogCritical(Configuration["BaseURI"]);
-            System.Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
             app.UseApplicationInsightsRequestTelemetry();
 
             //the baseURI setting is injected in the app settings from an environment variable

@@ -58,6 +58,7 @@ namespace IdSvrHost.Configuration
                          new Secret("secret".Sha256())
                     },
                      AllowedGrantTypes = GrantTypes.Implicit,
+                     AllowAccessTokensViaBrowser= true,
                     RequireConsent = true,
                     //AllowAccessToAllScopes=true,
                     AllowRememberConsent = false,

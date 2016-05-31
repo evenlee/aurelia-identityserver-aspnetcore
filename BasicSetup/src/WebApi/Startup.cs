@@ -17,8 +17,7 @@ namespace WebApi
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 //.AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables("Aurelia_Sample_")
-                ;
+                .AddEnvironmentVariables("Aurelia_Sample_");
 
             if (env.IsEnvironment("Development"))
             {
@@ -36,9 +35,16 @@ namespace WebApi
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-            
+
+
+            //RC2
+            var scopePolicy = new AuthorizationPolicyBuilder()
+                                .RequireClaim("scope", "crm")
+                                .Build();
+
             //TODO RC2
-            //services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
+
 
             //services.AddCors();
             //services.AddCors(options =>
@@ -62,10 +68,6 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IOptions<AppSettings> settings)
         {
-            //RC2
-            var scopePolicy = new AuthorizationPolicyBuilder().RequireClaim("scope", "crm").Build();
-
-
             //the baseURI setting is injected in the app settings from an environment variable
             //the reason is that at build time we don't know the ip address of the docker host
             settings.Value.BaseURI = Configuration["BaseURI"];
@@ -94,10 +96,12 @@ namespace WebApi
             app.UseApplicationInsightsExceptionTelemetry();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 Authority = settings.Value.STS,
                 RequireHttpsMetadata=false,
+                Audience = settings.Value.STS + "/resources",
                 TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
                     NameClaimType = "name",

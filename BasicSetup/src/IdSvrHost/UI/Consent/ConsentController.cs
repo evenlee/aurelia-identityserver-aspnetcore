@@ -3,9 +3,7 @@ using IdentityServer4.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using System;
 using IdentityServer4.Core.Models;
 
 namespace IdSvrHost.UI.Consent

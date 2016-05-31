@@ -23,10 +23,10 @@ namespace IdSvrHost.Configuration
                     Description = "Access to CRM data",
                     Type = ScopeType.Resource,
 
-                    ScopeSecrets = new List<Secret>
-                    {
-                        new Secret("secret".Sha256())
-                    },
+                    //ScopeSecrets = new List<Secret>
+                    //{
+                    //    new Secret("secret".Sha256())
+                    //},
                     Claims = new List<ScopeClaim>
                     {
                         new ScopeClaim("role")

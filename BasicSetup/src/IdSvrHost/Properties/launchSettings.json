@@ -11,15 +11,18 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+      "commandLineArgs": "SERVER.URLS=http://localhost:22530/",
       "environmentVariables": {
         "Aurelia_Sample_BaseURI": "localhost",
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_SERVER.URLS": "http://localhost:12345"
       }
     },
     "IdSvrHost": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5001",
+      "commandLineArgs": "SERVER.URLS=http://localhost:22530/",
+      "launchUrl": "http://localhost:22530",
       "environmentVariables": {
         "Aurelia_Sample_BaseURI": "localhost",
         "ASPNETCORE_ENVIRONMENT": "Development",

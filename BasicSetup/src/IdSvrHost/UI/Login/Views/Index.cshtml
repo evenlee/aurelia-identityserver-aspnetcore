@@ -15,7 +15,7 @@
                 </div>
                 <div class="panel-body">
 
-                    <form asp-action="Login">
+                    <form asp-route="Login">
                         <input type="hidden" asp-for="SignInId" />
 
                         <fieldset>
@@ -53,9 +53,15 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-inline">
-                            <li ng-repeat="provider in model.externalProviders">
-                                <a class="btn btn-default" href="{{provider.href}}">{{provider.text}}</a>
+                            <li>
+                                <a class="btn btn-default" 
+                                   asp-route="External" 
+                                   asp-route-provider="Google"
+                                   asp-route-signInId="@Model.SignInId">Google</a>
                             </li>
+                            @*<li ng-repeat="provider in model.externalProviders">
+                                <a class="btn btn-default" href="{{provider.href}}">{{provider.text}}</a>
+                            </li>*@
                         </ul>
                     </div>
                 </div>

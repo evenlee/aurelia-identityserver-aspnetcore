@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{236ACA91-B15D-4ACF-A843-B60D44844463}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87A212F5-9C0B-4FE0-806B-4DBDEB3C7200}"
 	ProjectSection(SolutionItems) = preProject
+		src\build-docker-compose.sh = src\build-docker-compose.sh
 		src\docker-compose.yml = src\docker-compose.yml
+		DotNetRun.cmd = DotNetRun.cmd
 		global.json = global.json
-		StartDnx.cmd = StartDnx.cmd
+		src\start-docker-compose.sh = src\start-docker-compose.sh
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AureliaAspNetApp", "src\AureliaAspNetApp\AureliaAspNetApp.xproj", "{4AAFD9A8-008C-4ADF-8089-90C6ED4B96E3}"

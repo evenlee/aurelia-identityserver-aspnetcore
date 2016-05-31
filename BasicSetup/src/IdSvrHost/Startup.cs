@@ -8,13 +8,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using IdSvrHost.Configuration;
-using IdSvrHost.Extensions;
+
 using Microsoft.Extensions.PlatformAbstractions;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
 using IdentityServer4.Core.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http;
+using IdSvrHost.Extensions;
 
 namespace IdSvrHost
 {
@@ -26,9 +27,9 @@ namespace IdSvrHost
         public Startup( IHostingEnvironment env)
         {
             _environment = env;
-
-            var builder = new ConfigurationBuilder()
-                 .SetBasePath(env.ContentRootPath)
+            
+            var builder = new  ConfigurationBuilder()
+                 //.SetBasePath(env.ContentRootPath)
                  .AddEnvironmentVariables("Aurelia_Sample_")
                  .AddEnvironmentVariables("ASPNETCORE_");
             Configuration = builder.Build();
@@ -37,17 +38,15 @@ namespace IdSvrHost
 
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
-            services.Configure<AppSettings>((a) =>
-                 {
-                     a.BaseURI = Configuration["BaseURI"];
+            services.AddOptions();
 
-                 });
-            System.Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxx " + Path.Combine(_environment.ContentRootPath, "idsrv4test.pfx"));
+            services.Configure<AppSettings>(c => c.BaseURI = Configuration["BaseURI"]);
 
-            var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "idsrv4test.pfx"), "idsrv3test");
+            var cert = new X509Certificate2(
+                Path.Combine(_environment.ContentRootPath, "idsrv4test.pfx"), "idsrv3test");
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             var builder = services.AddIdentityServer(options =>
             {
                 options.SigningCertificate = cert;
@@ -71,8 +70,8 @@ namespace IdSvrHost
             var sp = services.BuildServiceProvider();
           
             IOptions<AppSettings> settings = sp.GetService(typeof(IOptions<AppSettings>)) as IOptions<AppSettings>;
-            settings.Value.BaseURI = Configuration["BaseURI"];
-
+            //settings.Value.BaseURI = Configuration["BaseURI"];
+            System.Console.WriteLine("base uri " + settings.Value.BaseURI);
             builder.AddInMemoryClients(new Clients((settings)).Get());
             builder.AddInMemoryScopes(Scopes.Get());
 

@@ -1,7 +1,6 @@
 ﻿using IdentityServer4.Core;
 using IdentityServer4.Core.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
