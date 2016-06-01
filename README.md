@@ -29,10 +29,10 @@ You are completely free to choose whatever you like. I like the simplicity and s
 Currently it's not possible to debug c# code with visual studio code. So, if you need debugging, use visual studio.
 
 1. Visual studio
-  * You can either run StartDnx.cmd or simply press F5
+  * You can either run StartDotNet.cmd or simply press F5
      
 2. Visual studio Code or any other editor like SublimeText
-  * run StartDnx.cmd
+  * run StartDotNet.cmd
 
 ### components overview
 #### IdSvrHost
