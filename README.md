@@ -50,6 +50,9 @@ A simple website running the aurelia app as static asset. So the aurelia applica
 This implies that we can NOT use the oauth AUTHORIZATION CODE FLOW here. Instead we use the IMPLICIT flow.
 
 ### Dockerfiles and docker-compose
+
+Important: due to **upgrading (sic)** to RC2, the whole docker setup got broken. Quite annoying... :(
+
 The individual projects contain a Dockerfile. In the root src folder you will find a docker-compose.yml file.
 Make sure you have a linux box at your disposal (DigitalOcean, Azure, VirtualBox, ...) and install docker
 and docker-compose:
@@ -72,6 +75,7 @@ git clone https://github.com/paulvanbladel/aurelia-identityserver-aspnetcore.git
 * step 5: take a coffee or two and wait a bit
 
 ### Understanding the docker-compose approach
+
 A common difficulty in software deployment is parameter configuration management. In this sample app we have configuration both on the level of the various
 .NET projects, but also on the level of the SPA's (i.e. the Aurelia single page applications).
 So, also with docker we need to deal with parameters. The most important param to deal with in this sample, is the IP address of the docker host.

@@ -51,7 +51,6 @@ namespace IdSvrHost
                 .Configure(configureApplication)
                 .ConfigureServices(configureServices)
                 .ConfigureLogging(configureLogging)
-
                 .Build();
 
             host.Run();
