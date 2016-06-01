@@ -5,21 +5,21 @@ This sample shows aurelia in combination with a web api and identityserver 4. Th
 ### how to install?
   * cd src/AureliaAspNetApp
     * npm install
-    * dnu restore
+    * dotnet restore
   
   * cd src/AureliaWebsite
     * npm install
   
   * cd src/IdSvrHost
-    * dnu restore
+    * dotnet restore
   
   * cd src/WebApi
-    * dnu restore
-  * dnu commands install Microsoft.Dnx.Watcher
+    * dotnet restore
+  * dnu commands install Microsoft.Dnx.Watcher (TODO update this for DOTNET)
 
 ### how to run?
 The root of the solution contains a .cmd file which will start all projects. 
-We use dnx-watch, so file changes will result in an immediate recompilation of the sources.
+We use dnx-watch, so file changes will result in an immediate recompilation of the sources. (TODO update this for DOTNET)
 
 ### WebPack
 The webprojects AureliaAspNetApp and AureliaWebsite don't use jspm any longer but I migrated things to webpack/NPM.
