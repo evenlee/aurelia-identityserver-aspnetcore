@@ -15,11 +15,10 @@ This sample shows aurelia in combination with a web api and identityserver 4. Th
   
   * cd src/WebApi
     * dotnet restore
-  * dnu commands install Microsoft.Dnx.Watcher (TODO update this for DOTNET)
 
 ### how to run?
 The root of the solution contains a .cmd file which will start all projects. 
-We use dnx-watch, so file changes will result in an immediate recompilation of the sources. (TODO update this for DOTNET)
+We use dotnet watch, so file changes will result in an immediate recompilation of the sources.
 
 ### WebPack
 The webprojects AureliaAspNetApp and AureliaWebsite don't use jspm any longer but I migrated things to webpack/NPM.
@@ -52,6 +51,7 @@ This implies that we can NOT use the oauth AUTHORIZATION CODE FLOW here. Instead
 ### Dockerfiles and docker-compose
 
 Important: due to **upgrading (sic)** to RC2, the whole docker setup got broken. Quite annoying... :(
+Currently there is only a problem with the npm part of AureliaAspNetApp, the 2 other projects works fine with docker.
 
 The individual projects contain a Dockerfile. In the root src folder you will find a docker-compose.yml file.
 Make sure you have a linux box at your disposal (DigitalOcean, Azure, VirtualBox, ...) and install docker
