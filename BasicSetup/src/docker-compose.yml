@@ -12,6 +12,7 @@ services:
      - webapi
     environment:
      -  Aurelia_Sample_BaseURI=REPLACE_WITH_DOCKERHOSTIP
+     -  Aurelia_Sample_MVC_URL=http://0.0.0.0:49849
   idsvrhost:
     build:
       context: ./IdSvrHost
@@ -19,6 +20,7 @@ services:
      - "22530:22530"
     environment:
      -  Aurelia_Sample_BaseURI=REPLACE_WITH_DOCKERHOSTIP
+     -  Aurelia_Sample_STS_URL=http://0.0.0.0:22530
   webapi:
     build:
       context: ./WebApi
@@ -26,3 +28,4 @@ services:
      - "57391:57391"
     environment:
      -  Aurelia_Sample_BaseURI=REPLACE_WITH_DOCKERHOSTIP
+     -  Aurelia_Sample_API_URL=http://0.0.0.0:57391
