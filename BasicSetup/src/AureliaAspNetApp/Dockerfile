@@ -1,16 +1,13 @@
 FROM microsoft/dotnet:1.0.0-preview1
-ARG hostip
 
+ARG hostip
 RUN curl -sL https://deb.nodesource.com/setup_5.x |  bash -
 RUN apt-get install -y nodejs
-
-
-
 RUN mkdir -p /AureliaAspNetApp
 
-ONBUILD COPY . /AureliaAspNetApp
+COPY . /AureliaAspNetApp
 WORKDIR /AureliaAspNetApp
-ONBUILD RUN dotnet restore
+RUN ["dotnet", "restore"]
 RUN ["npm","install"]
 #the docker compose environment var is injected here in the SPA javascript file authConfig.js 
 #for magic see following line
