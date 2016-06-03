@@ -50,9 +50,6 @@ This implies that we can NOT use the oauth AUTHORIZATION CODE FLOW here. Instead
 
 ### Dockerfiles and docker-compose
 
-Important: due to **upgrading (sic)** to RC2, the whole docker setup got broken. Quite annoying... :(
-Currently there is only a problem with the npm part of AureliaAspNetApp, the 2 other projects works fine with docker.
-
 The individual projects contain a Dockerfile. In the root src folder you will find a docker-compose.yml file.
 Make sure you have a linux box at your disposal (DigitalOcean, Azure, VirtualBox, ...) and install docker
 and docker-compose:
