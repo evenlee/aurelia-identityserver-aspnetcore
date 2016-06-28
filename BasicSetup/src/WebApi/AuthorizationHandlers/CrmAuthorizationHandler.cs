@@ -9,23 +9,23 @@ using WebApi.Models;
 namespace WebApi.AuthorizationHandlers
 {
     //WORK IN PROGRESS
-    public class CrmAuthorizationHandler : AuthorizationHandler<OperationAuthorizationRequirement, Customer>
-    {
+    //public class CrmAuthorizationHandler : AuthorizationHandler<OperationAuthorizationRequirement, Customer>
+    //{
        
-        protected override void Handle(AuthorizationContext context, OperationAuthorizationRequirement requirement, Customer resource)
-        {
-            if (requirement.Name=="read")
-            {
-                if (context.User.HasClaim( "role", "Geek"))
-                {
-                    context.Succeed(requirement);
-                }
-                else
-                {
-                    context.Fail();
-                }
+    //    protected override void Handle(AuthorizationContext context, OperationAuthorizationRequirement requirement, Customer resource)
+    //    {
+    //        if (requirement.Name=="read")
+    //        {
+    //            if (context.User.HasClaim( "role", "Geek"))
+    //            {
+    //                context.Succeed(requirement);
+    //            }
+    //            else
+    //            {
+    //                context.Fail();
+    //            }
                 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 }

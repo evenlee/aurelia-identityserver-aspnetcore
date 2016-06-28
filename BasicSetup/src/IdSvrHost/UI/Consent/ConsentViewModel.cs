@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using IdentityServer4.Extensions;
+using IdentityServer4.Models;
+using IdentityServer4.Services;
+using System.Collections.Generic;
 using System.Linq;
-using IdentityServer4.Core.Extensions;
-using IdentityServer4.Core.Models;
-using IdentityServer4.Core.Services;
+
 
 namespace IdSvrHost.UI.Consent
 {

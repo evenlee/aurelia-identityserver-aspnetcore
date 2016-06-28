@@ -1,25 +1,23 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Serialization;
-using Microsoft.Extensions.Logging;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
+﻿using IdentityServer4.Configuration;
 using IdSvrHost.Configuration;
 using IdSvrHost.Extensions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace IdSvrHost
 {
     public class Program
     {
         private static IConfigurationRoot Configuration;
+
         public static void Main(string[] args)
         {
             var builder = new ConfigurationBuilder()
@@ -73,15 +71,15 @@ namespace IdSvrHost
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            
             var builder = services.AddIdentityServer(options =>
             {
-                options.SigningCertificate = cert;
                 options.RequireSsl = false;
                 options.SiteName = "IDS";
-                options.Endpoints.EnableIdentityTokenValidationEndpoint = true;
+               //TODO options.Endpoints.EnableIdentityTokenValidationEndpoint = true;
+               
 
-
-                options.EventsOptions = new IdentityServer4.Core.Configuration.EventsOptions
+                options.EventsOptions = new EventsOptions
                 {
                     RaiseSuccessEvents = true,
                     RaiseErrorEvents = true,
@@ -90,7 +88,7 @@ namespace IdSvrHost
                 };
 
 
-            });
+            }).SetSigningCredential(cert);
             //feels a bit artificial: 
             // we need access to the AppSettings provider inside the service configuration...
 
@@ -98,7 +96,7 @@ namespace IdSvrHost
 
             IOptions<AppSettings> settings = sp.GetService(typeof(IOptions<AppSettings>)) as IOptions<AppSettings>;
             System.Console.WriteLine("base uri " + settings.Value.BaseURI);
-
+            
             builder.AddInMemoryClients(new Clients((settings)).Get());
             builder.AddInMemoryScopes(Scopes.Get());
 

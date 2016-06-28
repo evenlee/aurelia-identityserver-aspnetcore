@@ -1,4 +1,4 @@
-﻿using IdentityServer4.Core.Models;
+﻿using IdentityServer4.Models;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 
