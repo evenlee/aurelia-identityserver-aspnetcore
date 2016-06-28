@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.0.0-preview1
+FROM microsoft/dotnet:1.0.0-preview2-sdk
 ARG hostip
 RUN rm /etc/apt/sources.list.d/llvm.list
 RUN apt-get -qq update && apt-get -qqy --no-install-recommends install \
