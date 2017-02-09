@@ -67,5 +67,12 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
-  }
+  }  ,
+  "aurelia": {
+        "build": {
+            "resources": [
+                    "aurelia-auth/auth-filter"
+            ]
+        }
+    }
 }
